@@ -307,85 +307,394 @@ body::before {
   .card-abbr { width: 32px; height: 32px; font-size: 1rem; }
 }
 
-/* ==================== 内容区 ==================== */
-.content-section { padding: 3rem 2rem 6rem; max-width: 1280px; margin: 0 auto; }
-.content-header { margin-bottom: 2rem; }
-.content-header h2 { font-family: var(--font-serif); font-size: 2rem; color: var(--primary); }
-.content-header p { color: var(--text-secondary); font-size: 0.9rem; }
-.content-grid { display: grid; grid-template-columns: 300px 1fr; gap: 2rem; align-items: start; }
+/* ==================== 实践内容（城市模块） ==================== */
+.content-section {
+  padding: 4rem 2rem 8rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  background: var(--bg);
+}
 
-/* 左侧路线面板 */
-.route-panel {
-  background: var(--white); border-radius: var(--radius-lg); box-shadow: var(--shadow);
-  overflow: hidden; position: sticky; top: 84px; border: 1px solid var(--border-light);
+/* 左右布局容器 */
+.content-wrapper {
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
 }
-.route-panel-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-light); background: var(--primary-soft); }
-.route-panel-header h3 { font-size: 0.95rem; color: var(--primary); font-weight: 700; }
-.route-list { padding: 0.5rem; }
-.route-point {
-  display: flex; align-items: center; gap: 0.85rem; padding: 0.9rem 1.1rem;
-  border-radius: var(--radius); cursor: pointer; transition: all var(--transition);
-  border: 2px solid transparent; margin-bottom: 0.25rem;
-}
-.route-point:hover { background: var(--primary-soft); border-color: var(--primary-light); transform: translateX(4px); }
-.route-point.active { background: var(--primary); color: var(--white); border-color: var(--primary); box-shadow: var(--shadow); }
-.route-number { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 800; opacity: 0.5; min-width: 32px; text-align: center; }
-.route-point.active .route-number { opacity: 1; color: var(--gold); }
-.route-info { flex: 1; min-width: 0; }
-.route-info h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.15rem; }
-.route-info p { font-size: 0.78rem; opacity: 0.65; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.route-arrow { opacity: 0; transform: translateX(-4px); transition: all var(--transition); min-width: 20px; }
-.route-point:hover .route-arrow, .route-point.active .route-arrow { opacity: 1; transform: translateX(0); }
 
-/* 右侧详情面板 — 模块化卡片 */
-.detail-panel {
-  background: transparent; overflow-y: auto; max-height: calc(100vh - 120px);
-  position: sticky; top: 84px; display: flex; flex-direction: column; gap: 1.5rem;
+/* ---- 左侧城市导航 ---- */
+.city-nav {
+  width: 150px;
+  min-width: 150px;
+  position: sticky;
+  top: 84px;
+  padding: 8px 0 0 0;
 }
-.detail-panel::-webkit-scrollbar { width: 6px; }
-.detail-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.city-nav-inner {
+  border-right: 1px solid var(--border-light);
+  padding-right: 0;
+}
+.city-nav-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  padding: 0 0 12px 14px;
+  font-weight: 600;
+}
+.city-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 
-.detail-card {
-  background: var(--white); border-radius: var(--radius-lg); padding: 2rem;
-  box-shadow: var(--shadow); border: 1px solid var(--border-light);
+.city-nav-item {
+  display: block;
+  padding: 10px 14px;
+  border-left: 3px solid transparent;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
 }
-.detail-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 2px solid var(--border-light); }
-.detail-title { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 900; color: var(--primary); }
-.detail-badge { padding: 0.3rem 1rem; font-size: 0.8rem; font-weight: 600; color: var(--accent); background: var(--accent-light); border-radius: 20px; white-space: nowrap; }
+.city-nav-item:hover {
+  background: linear-gradient(90deg, rgba(15,43,92,0.03) 0%, transparent 100%);
+}
+.city-nav-item .nav-num {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.city-nav-item .nav-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+.city-nav-item.active {
+  background: linear-gradient(90deg, rgba(15,43,92,0.06) 0%, transparent 100%);
+  border-left-color: var(--primary);
+}
+.city-nav-item.active .nav-num { color: var(--primary); }
+.city-nav-item.active .nav-name { color: var(--primary); font-weight: 700; }
 
-/* 模块通用 */
-.module-card {
-  border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow);
+/* ---- 右侧城市内容 ---- */
+.city-content {
+  flex: 1;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 0 0 44px;
 }
-.module-card-header { padding: 1.5rem 1.5rem 0; display: flex; align-items: center; gap: 0.6rem; }
-.module-card-header .module-icon { font-size: 1.8rem; }
-.module-card-header h3 { font-size: 1.2rem; font-weight: 700; color: var(--text); }
-.module-card-body { padding: 1.2rem 1.5rem 1.5rem; }
-.module-card-body img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: var(--radius); margin-bottom: 1rem; box-shadow: var(--shadow-sm); }
-.module-card-body p { color: var(--text-secondary); line-height: 1.85; font-size: 0.93rem; }
 
-.food-card { background: linear-gradient(135deg, #FFF9F5, #FFF5EB); border: 1px solid #FDE8D0; }
-.culture-card { background: linear-gradient(135deg, #F8FAFE, #EEF2F9); border: 1px solid #D8E0F0; }
+/* 城市模块 */
+.city-module {
+  margin-bottom: 64px;
+  scroll-margin-top: 84px;
+}
+.city-module + .city-module {
+  border-top: 1px solid var(--border-light);
+  padding-top: 64px;
+}
 
-.heritage-card {
-  background: var(--white); border-radius: var(--radius-lg); padding: 1.8rem;
-  border-left: 5px solid var(--primary); box-shadow: var(--shadow);
+/* 城市标题区 */
+.city-module-header {
+  margin-bottom: 28px;
 }
-.heritage-card .module-icon { font-size: 1.6rem; }
-.heritage-card h3 { font-size: 1.1rem; font-weight: 700; margin: 0.5rem 0 0.8rem; color: var(--primary); }
-.heritage-card p { color: var(--text-secondary); line-height: 1.85; font-size: 0.93rem; }
+.city-module-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.city-module-name {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.city-module-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 480px;
+}
 
-.insight-card {
-  background: linear-gradient(135deg, #FDF8F3, #FEF5EC); border-radius: var(--radius-lg);
-  padding: 2rem; border: 1px solid #F5E0C8; box-shadow: var(--shadow); position: relative;
+/* 主视觉大图 */
+.city-hero-image {
+  width: 100%;
+  height: 260px;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  margin-bottom: 40px;
+  box-shadow: 0 12px 40px rgba(15,43,92,0.12);
+  display: block;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light), var(--gold));
 }
-.insight-card::before {
-  content: '\201C'; position: absolute; top: 0.5rem; left: 1.2rem;
-  font-family: var(--font-serif); font-size: 5rem; color: var(--gold); opacity: 0.3; line-height: 1;
+
+/* 区块标题 */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-.insight-card .module-icon { font-size: 1.4rem; }
-.insight-card h3 { font-size: 1.1rem; font-weight: 700; margin: 0.3rem 0 0.8rem; color: var(--accent); }
-.insight-card p { color: var(--text-secondary); line-height: 1.85; font-size: 0.93rem; font-style: italic; position: relative; z-index: 1; }
+.section-label-bar {
+  width: 3px;
+  height: 18px;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+.section-label-bar.blue { background: var(--primary); }
+.section-label-bar.gold { background: var(--gold); }
+.section-label-bar.accent { background: var(--accent); }
+.section-label-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* 调研区域卡片 — 错落排列 */
+.survey-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.survey-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  border: 1px solid var(--border-light);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.survey-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+.survey-card:nth-child(2) { margin-top: 22px; }
+.survey-card-image {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+}
+.survey-card:nth-child(1) .survey-card-image { height: 100px; }
+.survey-card:nth-child(2) .survey-card-image { height: 80px; }
+.survey-card:nth-child(3) .survey-card-image { height: 110px; }
+.survey-card-body {
+  padding: 14px 16px;
+}
+.survey-card-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.survey-card-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* 非遗项目卡片 */
+.heritage-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.heritage-item {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.03);
+  border: 1px solid var(--border-light);
+  transition: all 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+  position: relative;
+}
+.heritage-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.heritage-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+  border-color: var(--accent-light);
+}
+.heritage-item:hover::after { opacity: 1; }
+.heritage-item-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+.heritage-item-body {
+  padding: 14px;
+}
+.heritage-item-name {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.heritage-item-level {
+  font-size: 0.65rem;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin-bottom: 6px;
+}
+.heritage-item-desc {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* 实践记录照片墙 */
+.photo-wall {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  height: 240px;
+  margin-bottom: 40px;
+}
+.photo-main {
+  grid-row: span 2;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.photo-main img,
+.photo-sub img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo-sub {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.photo-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 14px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.photo-main .photo-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 14px 18px;
+}
+
+/* 实践信息条 */
+.practice-info-bar {
+  display: flex;
+  gap: 36px;
+  padding: 14px 20px;
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+.practice-info-bar span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.practice-info-bar .info-icon {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* 实践感悟 */
+.insight-block {
+  background: linear-gradient(135deg, #FDF8F3, #FEF5EC);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  border: 1px solid #F5E0C8;
+  position: relative;
+}
+.insight-block::before {
+  content: '\201C';
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  color: var(--gold);
+  opacity: 0.18;
+  line-height: 1;
+}
+.insight-block-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+}
+.insight-block-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.insight-block-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--primary);
+}
+.insight-block-text {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 2.2;
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+  margin: 0;
+  max-width: 620px;
+}
+
+/* 内容区动画 */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ==================== Footer ==================== */
 .footer {
@@ -414,6 +723,9 @@ body::before {
   .hero-title { font-size: 2.6rem; }
   .hero-collage { height: 360px; }
   .content-grid { grid-template-columns: 260px 1fr; }
+  .content-wrapper { align-items: flex-start; }
+  .city-content { padding: 0 0 0 32px; }
+  .heritage-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-grid { gap: 0.8rem; }
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
 }
@@ -434,8 +746,20 @@ body::before {
   .timeline-dots { flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
   .timeline-line { display: none; }
   .dot-circle { width: 44px; height: 44px; }
-  .content-grid { grid-template-columns: 1fr; }
-  .route-panel, .detail-panel { position: static; max-height: none; }
+  .content-wrapper { flex-direction: column; }
+  .city-nav { width: 100%; min-width: 100%; position: static; }
+  .city-nav-inner { border-right: none; border-bottom: 1px solid var(--border-light); padding-bottom: 8px; margin-bottom: 16px; }
+  .city-nav-list { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+  .city-nav-item { border-left: none; border-bottom: 2px solid transparent; border-radius: 4px 4px 0 0; padding: 8px 14px; }
+  .city-nav-item.active { border-left-color: transparent; border-bottom-color: var(--primary); background: transparent; }
+  .city-content { padding: 0; }
+  .survey-grid { grid-template-columns: repeat(2, 1fr); }
+  .survey-card:nth-child(2) { margin-top: 0; }
+  .heritage-grid { grid-template-columns: repeat(2, 1fr); }
+  .photo-wall { grid-template-columns: 1fr 1fr; height: 200px; }
+  .photo-main { grid-row: auto; }
+  .city-module-name { font-size: 1.6rem; }
+  .city-hero-image { height: 180px; margin-bottom: 28px; }
   .section-title { font-size: 1.5rem; }
   .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
 }
@@ -445,5 +769,14 @@ body::before {
   .stats-grid { gap: 0.6rem; }
   .stat-card { padding: 1.2rem 0.8rem; }
   .stat-number { font-size: 1.6rem; }
-  .detail-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .city-nav-item { font-size: 0.75rem; }
+  .survey-grid { grid-template-columns: 1fr; gap: 10px; }
+  .survey-card:nth-child(2) { margin-top: 0; }
+  .heritage-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .heritage-item-image { height: 90px; }
+  .photo-wall { grid-template-columns: 1fr 1fr; height: auto; }
+  .photo-main { grid-column: span 2; height: 160px; }
+  .photo-sub { aspect-ratio: 1; }
+  .practice-info-bar { flex-wrap: wrap; gap: 12px; }
+  .city-nav-label { padding-left: 0; }
 }

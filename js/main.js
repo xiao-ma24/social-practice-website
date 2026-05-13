@@ -5,20 +5,19 @@
   'use strict';
 
   var provinceGrid = document.getElementById('province-grid');
-  var routeList = document.getElementById('route-list');
-  var detailPanel = document.getElementById('detail-panel');
-  var provinceTitle = document.getElementById('province-title');
-  var provinceDesc = document.getElementById('province-desc');
+  var cityNavList = document.getElementById('city-nav-list');
+  var cityContent = document.getElementById('city-content');
   var navLinks = document.querySelectorAll('[data-nav]');
 
   var currentProvince = 'gansu';
-  var currentPointId = 'lanzhou';
+  var currentCityId = null;
 
   // ==================== 初始化 ====================
   function init() {
-    loadProvince(currentProvince, currentPointId);
+    setupScrollSpy();
+    loadProvince(currentProvince);
     setupTimeline();
-    setupRouteDelegation();
+    setupCityNavClicks();
     setupScrollAnimations();
     setupSmoothScroll();
     setupMobileMenu();
@@ -26,95 +25,158 @@
   }
 
   // ==================== 加载省份 ====================
-  function loadProvince(provinceKey, pointId) {
+  function loadProvince(provinceKey) {
     var province = cultureData[provinceKey];
     if (!province) return;
     currentProvince = provinceKey;
-    currentPointId = pointId || province.points[0].id;
-
-    provinceTitle.textContent = province.name;
-    provinceDesc.textContent = province.description;
-    renderRoutePoints(province);
-    renderDetail(provinceKey, currentPointId);
+    currentCityId = province.points[0].id;
+    renderCityNav(province);
+    renderCityModules(province);
     updateTimelineActive(provinceKey);
   }
 
-  // ==================== 渲染路线点列表 ====================
-  function renderRoutePoints(province) {
-    routeList.innerHTML = province.points.map(function (point, index) {
-      var isActive = point.id === currentPointId;
-      return '<div class="route-point' + (isActive ? ' active' : '') + '" data-point="' + point.id + '">' +
-        '<span class="route-number">' + ('0' + (index + 1)).slice(-2) + '</span>' +
-        '<div class="route-info"><h4>' + point.name + '</h4><p>' + point.culture.title + '</p></div>' +
-        '<svg class="route-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">' +
-        '<path d="M7 4L14 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-        '</svg></div>';
+  // ==================== 渲染城市导航 ====================
+  function renderCityNav(province) {
+    cityNavList.innerHTML = province.points.map(function (point, index) {
+      var isActive = point.id === currentCityId;
+      var num = ('0' + (index + 1)).slice(-2);
+      return '<a class="city-nav-item' + (isActive ? ' active' : '') + '" data-city="' + point.id + '" href="#city-' + point.id + '">' +
+        '<div class="nav-num">' + num + '</div>' +
+        '<div class="nav-name">' + point.name + '</div>' +
+      '</a>';
     }).join('');
   }
 
-  // ==================== 渲染详情（模块化卡片） ====================
-  function renderDetail(provinceKey, pointId) {
-    var point = cultureData[provinceKey].points.find(function (p) { return p.id === pointId; });
-    if (!point) return;
-
-    detailPanel.innerHTML =
-      // 地点标题卡片
-      '<div class="detail-card fade-in">' +
-        '<div class="detail-head">' +
-          '<h2 class="detail-title">' + point.name + '</h2>' +
-          '<span class="detail-badge">' + cultureData[provinceKey].name + '</span>' +
-        '</div>' +
-      '</div>' +
-
-      // 美食卡片
-      '<div class="module-card food-card fade-in">' +
-        '<div class="module-card-header">' +
-          '<span class="module-icon">🍜</span>' +
-          '<h3>' + point.food.title + '</h3>' +
-        '</div>' +
-        '<div class="module-card-body">' +
-          '<img src="' + point.food.image + '" alt="' + point.food.title + '" loading="lazy">' +
-          '<p>' + point.food.description + '</p>' +
-        '</div>' +
-      '</div>' +
-
-      // 文化卡片
-      '<div class="module-card culture-card fade-in">' +
-        '<div class="module-card-header">' +
-          '<span class="module-icon">🏛</span>' +
-          '<h3>' + point.culture.title + '</h3>' +
-        '</div>' +
-        '<div class="module-card-body">' +
-          '<img src="' + point.culture.image + '" alt="' + point.culture.title + '" loading="lazy">' +
-          '<p>' + point.culture.description + '</p>' +
-        '</div>' +
-      '</div>' +
-
-      // 非遗传承意义
-      '<div class="heritage-card fade-in">' +
-        '<span class="module-icon">📜</span>' +
-        '<h3>非遗与传承意义</h3>' +
-        '<p>' + point.heritage + '</p>' +
-      '</div>' +
-
-      // 团队感悟（引用风格）
-      '<div class="insight-card fade-in">' +
-        '<span class="module-icon">✍</span>' +
-        '<h3>团队实践感悟</h3>' +
-        '<p>' + point.insight + '</p>' +
-      '</div>';
-
-    detailPanel.scrollTop = 0;
+  // ==================== 渲染城市模块 ====================
+  function renderCityModules(province) {
+    cityContent.innerHTML = province.points.map(function (point) {
+      return buildCityModule(province, point);
+    }).join('');
+    bindScrollSpy();
   }
 
-  // ==================== 省份卡片交互 ====================
+  function buildCityModule(province, point) {
+    var provinceKey = province.name;
+    var labelText = (province.fullName || province.name) + ' · ' + point.name;
+
+    return '<article class="city-module" id="city-' + point.id + '">' +
+
+      // ① 标题区
+      '<div class="city-module-header">' +
+        '<div class="city-module-label">' + labelText + '</div>' +
+        '<h2 class="city-module-name">' + point.name + '</h2>' +
+        '<p class="city-module-desc">' + (point.description || '') + '</p>' +
+      '</div>' +
+
+      // ② 主视觉大图
+      '<img class="city-hero-image" src="' + point.heroImage + '" alt="' + point.name + '" loading="lazy">' +
+
+      // ③ 调研区域
+      buildSurveyAreas(point.surveyAreas || []) +
+
+      // ④ 非遗项目
+      buildHeritageItems(point.heritageItems || []) +
+
+      // ⑤ 实践记录照片墙
+      buildPhotoWall(point.practicePhotos || []) +
+      buildPracticeInfo(point.practiceInfo) +
+
+      // ⑥ 实践感悟
+      buildInsight(point.insight) +
+
+    '</article>';
+  }
+
+  function buildSurveyAreas(areas) {
+    if (!areas.length) return '';
+    return '<div class="section-label">' +
+      '<span class="section-label-bar blue"></span>' +
+      '<span class="section-label-text">主要调研区域</span>' +
+    '</div>' +
+    '<div class="survey-grid">' +
+      areas.map(function (area) {
+        return '<div class="survey-card">' +
+          '<img class="survey-card-image" src="' + area.image + '" alt="' + area.name + '" loading="lazy">' +
+          '<div class="survey-card-body">' +
+            '<div class="survey-card-name">' + area.name + '</div>' +
+            '<div class="survey-card-desc">' + area.description + '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('') +
+    '</div>';
+  }
+
+  function buildHeritageItems(items) {
+    if (!items.length) return '';
+    return '<div class="section-label">' +
+      '<span class="section-label-bar gold"></span>' +
+      '<span class="section-label-text">非物质文化遗产</span>' +
+    '</div>' +
+    '<div class="heritage-grid">' +
+      items.map(function (item) {
+        return '<div class="heritage-item">' +
+          '<img class="heritage-item-image" src="' + item.image + '" alt="' + item.name + '" loading="lazy">' +
+          '<div class="heritage-item-body">' +
+            '<div class="heritage-item-name">' + item.name + '</div>' +
+            '<div class="heritage-item-level">' + item.level + '</div>' +
+            '<div class="heritage-item-desc">' + item.description + '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('') +
+    '</div>';
+  }
+
+  function buildPhotoWall(photos) {
+    if (!photos.length) return '';
+    var main = photos[0];
+    var subs = photos.slice(1);
+    return '<div class="section-label">' +
+      '<span class="section-label-bar accent"></span>' +
+      '<span class="section-label-text">实践记录</span>' +
+    '</div>' +
+    '<div class="photo-wall">' +
+      '<div class="photo-main">' +
+        '<img src="' + main.image + '" alt="' + main.label + '" loading="lazy">' +
+        '<div class="photo-label">' + main.label + '</div>' +
+      '</div>' +
+      subs.map(function (photo) {
+        return '<div class="photo-sub">' +
+          '<img src="' + photo.image + '" alt="' + photo.label + '" loading="lazy">' +
+          '<div class="photo-label">' + photo.label + '</div>' +
+        '</div>';
+      }).join('') +
+    '</div>';
+  }
+
+  function buildPracticeInfo(info) {
+    if (!info) return '';
+    return '<div class="practice-info-bar">' +
+      '<span><span class="info-icon">&#x1f3db;</span> ' + info.province + '</span>' +
+      '<span><span class="info-icon">&#x1f4cd;</span> ' + info.city + '</span>' +
+      '<span><span class="info-icon">&#x1f4c5;</span> ' + info.date + '</span>' +
+      '<span><span class="info-icon">&#x1f465;</span> ' + info.teamSize + '</span>' +
+    '</div>';
+  }
+
+  function buildInsight(text) {
+    if (!text) return '';
+    return '<div class="insight-block">' +
+      '<div class="insight-block-header">' +
+        '<div class="insight-block-icon">&#x270d;</div>' +
+        '<span class="insight-block-title">团队实践感悟</span>' +
+      '</div>' +
+      '<p class="insight-block-text">"' + text + '"</p>' +
+    '</div>';
+  }
+
+  // ==================== 省份卡片交互（六宫格） ====================
   function setupTimeline() {
     provinceGrid.addEventListener('click', function (e) {
       var card = e.target.closest('.province-card');
       if (!card) return;
       var key = card.dataset.province;
       if (key && cultureData[key]) {
-        loadProvince(key, cultureData[key].points[0].id);
+        loadProvince(key);
         document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
       }
     });
@@ -130,17 +192,51 @@
     });
   }
 
-  // ==================== 路线点点击 ====================
-  function setupRouteDelegation() {
-    routeList.addEventListener('click', function (e) {
-      var pointEl = e.target.closest('.route-point');
-      if (!pointEl) return;
-      var pointId = pointEl.dataset.point;
-      if (!pointId) return;
-      currentPointId = pointId;
-      renderRoutePoints(cultureData[currentProvince]);
-      renderDetail(currentProvince, pointId);
-      detailPanel.scrollTop = 0;
+  // ==================== 城市导航点击 → 平滑滚动 ====================
+  function setupCityNavClicks() {
+    cityNavList.addEventListener('click', function (e) {
+      e.preventDefault();
+      var item = e.target.closest('.city-nav-item');
+      if (!item) return;
+      var cityId = item.dataset.city;
+      var target = document.getElementById('city-' + cityId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
+  // ==================== 滚动监听 → 高亮当前城市 ====================
+  var scrollSpyObserver = null;
+
+  function setupScrollSpy() {
+    scrollSpyObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var cityId = entry.target.id.replace('city-', '');
+          currentCityId = cityId;
+          highlightNavItem(cityId);
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  }
+
+  function bindScrollSpy() {
+    if (!scrollSpyObserver) return;
+    scrollSpyObserver.disconnect();
+    var modules = cityContent.querySelectorAll('.city-module');
+    modules.forEach(function (mod) {
+      scrollSpyObserver.observe(mod);
+    });
+  }
+
+  function highlightNavItem(cityId) {
+    var items = cityNavList.querySelectorAll('.city-nav-item');
+    items.forEach(function (el) {
+      el.classList.remove('active');
+      if (el.dataset.city === cityId) {
+        el.classList.add('active');
+      }
     });
   }
 
@@ -199,7 +295,7 @@
         e.preventDefault();
         var key = this.dataset.provinceLink;
         if (key && cultureData[key]) {
-          loadProvince(key, cultureData[key].points[0].id);
+          loadProvince(key);
           document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
         }
       });
