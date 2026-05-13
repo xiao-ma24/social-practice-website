@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>青春足迹·文化研学</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <div class="logo-icon">研</div>
+      <span class="logo-text">青春足迹</span>
+    </div>
+    <button class="menu-toggle" id="menu-toggle" aria-label="菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="header-nav" id="nav-menu">
+      <a class="nav-link" data-nav="hero">首页</a>
+      <a class="nav-link" data-nav="stats">成果概览</a>
+      <a class="nav-link" data-nav="map">探索路线</a>
+      <a class="nav-link" data-nav="content">文化详情</a>
+      <a class="nav-link" data-nav="footer">关于我们</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ==================== Hero ==================== -->
+<section class="hero" id="hero">
+  <div class="hero-grid">
+    <div class="hero-left animate-on-scroll">
+      <span class="hero-tag">2026 · 社会实践成果展</span>
+      <h1 class="hero-title">青春足迹<br>文化研学</h1>
+      <p class="hero-subtitle">非遗传承 · 地域探索 · 青年担当</p>
+      <div class="hero-divider"></div>
+      <p class="hero-desc">三个月，六省，十二城。从黄河之滨到雪域高原，从草原深处到南疆边陲，我们用青春的脚步丈量祖国大地，用真诚的心感受非遗文化的温度与力量。</p>
+      <a class="hero-cta" data-nav="map">探索足迹 ↓</a>
+    </div>
+    <div class="hero-right animate-on-scroll delay-1">
+      <div class="hero-collage">
+        <img src="https://picsum.photos/seed/mogao-caves/400/560" alt="敦煌莫高窟" class="collage-img img-1" loading="lazy">
+        <img src="https://picsum.photos/seed/potala-palace/360/360" alt="布达拉宫" class="collage-img img-2" loading="lazy">
+        <img src="https://picsum.photos/seed/mongol-grassland/400/300" alt="内蒙古草原" class="collage-img img-3" loading="lazy">
+        <img src="https://picsum.photos/seed/xinjiang-bazaar/240/240" alt="新疆大巴扎" class="collage-img img-4" loading="lazy">
+        <div class="collage-accent"></div>
+        <div class="collage-dot dot-1"></div>
+        <div class="collage-dot dot-2"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 成果统计 ==================== -->
+<section class="stats-section" id="stats">
+  <div class="stats-grid">
+    <div class="stat-card animate-on-scroll">
+      <span class="stat-icon">🗺</span>
+      <div class="stat-number">6</div>
+      <div class="stat-label">实践地区（省份）</div>
+    </div>
+    <div class="stat-card animate-on-scroll delay-1">
+      <span class="stat-icon">📍</span>
+      <div class="stat-number">12</div>
+      <div class="stat-label">调研点位（城市）</div>
+    </div>
+    <div class="stat-card animate-on-scroll delay-2">
+      <span class="stat-icon">📜</span>
+      <div class="stat-number">24</div>
+      <div class="stat-label">非遗项目调研</div>
+    </div>
+    <div class="stat-card animate-on-scroll delay-3">
+      <span class="stat-icon">📅</span>
+      <div class="stat-number">3</div>
+      <div class="stat-label">实践周期（月）</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 时间线导航 ==================== -->
+<section class="map-section" id="map">
+  <h2 class="section-title animate-on-scroll">探索路线</h2>
+  <p class="section-subtitle animate-on-scroll">点击省份查看当地文化研学成果</p>
+  <div class="province-grid animate-on-scroll" id="province-grid">
+    <div class="province-card active" data-province="gansu" style="background-image:url(https://picsum.photos/seed/dunhuang-mogao/600/400)">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-abbr">甘</span>
+        <h3 class="card-name">甘肃</h3>
+        <p class="card-hint">丝路咽喉 · 敦煌壁画</p>
+      </div>
+    </div>
+    <div class="province-card" data-province="hubei" style="background-image:url(https://picsum.photos/seed/wuhan-yellow-crane/600/400)">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-abbr">鄂</span>
+        <h3 class="card-name">湖北</h3>
+        <p class="card-hint">荆楚文化 · 长江文明</p>
+      </div>
+    </div>
+    <div class="province-card" data-province="neimenggu" style="background-image:url(https://picsum.photos/seed/mongol-grassland/600/400)">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-abbr">蒙</span>
+        <h3 class="card-name">内蒙古</h3>
+        <p class="card-hint">草原文化 · 马背民族</p>
+      </div>
+    </div>
+    <div class="province-card" data-province="xizang" style="background-image:url(https://picsum.photos/seed/potala-palace/600/400)">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-abbr">藏</span>
+        <h3 class="card-name">西藏</h3>
+        <p class="card-hint">世界屋脊 · 雪域圣地</p>
+      </div>
+    </div>
+    <div class="province-card" data-province="xinjiang" style="background-image:url(https://picsum.photos/seed/kashgar-old-city/600/400)">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-abbr">新</span>
+        <h3 class="card-name">新疆</h3>
+        <p class="card-hint">丝路核心 · 多元文化</p>
+      </div>
+    </div>
+    <div class="province-card" data-province="guangxi" style="background-image:url(https://picsum.photos/seed/guilin-landscape/600/400)">
+      <div class="card-overlay"></div>
+      <div class="card-content">
+        <span class="card-abbr">桂</span>
+        <h3 class="card-name">广西</h3>
+        <p class="card-hint">壮乡歌海 · 山水甲天下</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 内容展示区 ==================== -->
+<section class="content-section" id="content">
+  <div class="content-header animate-on-scroll">
+    <h2 id="province-title">甘肃</h2>
+    <p id="province-desc">丝绸之路黄金段，黄河文化重要发源地</p>
+  </div>
+  <div class="content-grid">
+    <aside class="route-panel animate-on-scroll">
+      <div class="route-panel-header"><h3>考察路线</h3></div>
+      <div class="route-list" id="route-list"></div>
+    </aside>
+    <main class="detail-panel" id="detail-panel"></main>
+  </div>
+</section>
+
+<!-- ==================== Footer ==================== -->
+<footer class="footer" id="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>青春足迹·文化研学</h3>
+      <p>本项目为大学生社会实践成果展示网站，聚焦中国六大省份的非物质文化遗产与地域文化探索。团队历时三个月，跨越甘肃、湖北、内蒙古、西藏、新疆、广西六省区，深入十二座城市，完成二十四项非遗项目调研。</p>
+    </div>
+    <div class="footer-links">
+      <h4>探索省份</h4>
+      <ul>
+        <li><a data-province-link="gansu">甘肃 · 兰州 · 敦煌</a></li>
+        <li><a data-province-link="hubei">湖北 · 武汉 · 恩施</a></li>
+        <li><a data-province-link="neimenggu">内蒙古 · 呼和浩特 · 鄂尔多斯</a></li>
+        <li><a data-province-link="xizang">西藏 · 拉萨 · 日喀则</a></li>
+        <li><a data-province-link="xinjiang">新疆 · 乌鲁木齐 · 喀什</a></li>
+        <li><a data-province-link="guangxi">广西 · 桂林 · 南宁</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>关于我们</h4>
+      <ul>
+        <li>制作团队：文化探索实践小组</li>
+        <li>制作时间：2026年5月</li>
+        <li>学校：XX大学</li>
+        <li>指导老师：张老师</li>
+        <li>联系方式：culture@example.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 青春足迹·文化研学实践团队. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
