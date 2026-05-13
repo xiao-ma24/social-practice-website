@@ -82,7 +82,7 @@
       buildPracticeInfo(point.practiceInfo) +
 
       // ⑥ 实践感悟
-      buildInsight(point.insight) +
+      buildInsight(point) +
 
     '</article>';
   }
@@ -91,6 +91,7 @@
     if (!areas.length) return '';
     return '<div class="section-label">' +
       '<span class="section-label-bar blue"></span>' +
+      '<span class="section-label-icon">&#x1f50d;</span>' +
       '<span class="section-label-text">主要调研区域</span>' +
     '</div>' +
     '<div class="survey-grid">' +
@@ -110,6 +111,7 @@
     if (!items.length) return '';
     return '<div class="section-label">' +
       '<span class="section-label-bar gold"></span>' +
+      '<span class="section-label-icon">&#x1f3ad;</span>' +
       '<span class="section-label-text">非物质文化遗产</span>' +
     '</div>' +
     '<div class="heritage-grid">' +
@@ -132,6 +134,7 @@
     var subs = photos.slice(1);
     return '<div class="section-label">' +
       '<span class="section-label-bar accent"></span>' +
+      '<span class="section-label-icon">&#x1f4f7;</span>' +
       '<span class="section-label-text">实践记录</span>' +
     '</div>' +
     '<div class="photo-wall">' +
@@ -158,14 +161,17 @@
     '</div>';
   }
 
-  function buildInsight(text) {
-    if (!text) return '';
+  function buildInsight(point) {
+    if (!point.insight) return '';
+    var name = point.name || '';
+    var insightText = point.insight;
     return '<div class="insight-block">' +
       '<div class="insight-block-header">' +
         '<div class="insight-block-icon">&#x270d;</div>' +
         '<span class="insight-block-title">团队实践感悟</span>' +
       '</div>' +
-      '<p class="insight-block-text">"' + text + '"</p>' +
+      '<p class="insight-block-text">' + insightText + '</p>' +
+      (name ? '<p class="insight-block-signature">—— ' + name + '实践小组</p>' : '') +
     '</div>';
   }
 
