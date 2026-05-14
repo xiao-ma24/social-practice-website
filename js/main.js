@@ -69,7 +69,7 @@
       '</div>' +
 
       // ② 主视觉大图
-      '<img class="city-hero-image" src="' + point.heroImage + '" alt="' + point.name + '" loading="lazy">' +
+      '<div class="city-hero-wrap"><img class="city-hero-image" src="' + point.heroImage + '" alt="' + point.name + '" loading="lazy"></div>' +
 
       // ③ 调研区域
       buildSurveyAreas(point.surveyAreas || []) +
@@ -97,7 +97,7 @@
     '<div class="survey-grid">' +
       areas.map(function (area) {
         return '<div class="survey-card">' +
-          '<img class="survey-card-image" src="' + area.image + '" alt="' + area.name + '" loading="lazy">' +
+          '<div class="survey-card-img-wrap"><img class="survey-card-image" src="' + area.image + '" alt="' + area.name + '" loading="lazy"><div class="survey-card-overlay"></div></div>' +
           '<div class="survey-card-body">' +
             '<div class="survey-card-name">' + area.name + '</div>' +
             '<div class="survey-card-desc">' + area.description + '</div>' +
