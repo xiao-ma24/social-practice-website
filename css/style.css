@@ -349,125 +349,240 @@ body::after {
   align-items: flex-start;
 }
 
-/* ---- 左侧城市导航 ---- */
+/* ---- 左侧城市导航（现代中国风文化展馆导览栏） ---- */
 .city-nav {
-  width: 150px;
-  min-width: 150px;
+  width: 250px;
+  min-width: 250px;
   position: sticky;
   top: 84px;
-  padding: 8px 0 0 0;
+  padding: 0;
 }
 .city-nav-inner {
-  border-right: 1px solid var(--border-light);
-  padding-right: 0;
+  background: #f8f4ec;
+  border-radius: 16px;
+  padding: 24px 16px 16px 18px;
   position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 116px);
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.03),
+    0 4px 12px rgba(0,0,0,0.04);
+  overflow: hidden;
 }
+/* 宣纸纹理 */
 .city-nav-inner::before {
   content: '';
   position: absolute;
-  top: 40px;
-  bottom: 40px;
-  right: 0;
-  width: 1px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    var(--gold) 5%,
-    transparent 30%,
-    transparent 70%,
-    var(--gold) 95%,
-    transparent 100%
-  );
-  opacity: 0.2;
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
+  opacity: 0.04;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='120' height='160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230F2B5C' stroke-width='0.5' opacity='0.3'%3E%3Cpath d='M10 80 Q30 50 60 50 Q90 50 110 80'/%3E%3Cpath d='M5 95 Q30 65 60 65 Q90 65 115 95' stroke-width='0.35'/%3E%3Cpath d='M20 110 Q45 85 70 85 Q95 85 105 110' stroke-width='0.25'/%3E%3C/g%3E%3Ccircle cx='60' cy='40' r='2' fill='%23C8963E' opacity='0.15'/%3E%3Ccircle cx='90' cy='55' r='1.2' fill='%23C8963E' opacity='0.1'/%3E%3C/svg%3E");
+  background-size: 180px 180px, 120px 160px;
 }
-.city-nav-label {
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
+.city-nav-inner > * { position: relative; z-index: 1; }
+
+/* ===== ① 地区标题区 ===== */
+.nav-region-header {
+  margin-bottom: 18px;
+  position: relative;
+}
+.region-icon {
+  font-size: 0.8rem;
   color: var(--gold);
-  text-transform: uppercase;
-  padding: 0 0 12px 14px;
+  margin-bottom: 6px;
+  opacity: 0.7;
+}
+.region-title-group {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+.region-name {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+.region-eng {
+  font-size: 0.6rem;
   font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+.region-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 2px 0 0 0;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+  max-width: 92%;
+}
+.region-divider {
+  width: 48px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 1px;
+  margin-top: 14px;
+  opacity: 0.25;
+}
+
+/* ===== ② 城市导航卡片区 ===== */
+.nav-cards-container {
+  margin-bottom: 22px;
+  background: rgba(255,255,255,0.55);
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  flex-shrink: 0;
 }
 .city-nav-list {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .city-nav-item {
-  display: block;
-  padding: 10px 14px;
-  border-left: 3px solid transparent;
-  border-radius: 0 4px 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 14px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
   color: inherit;
-}
-.city-nav-item:hover {
-  background: linear-gradient(90deg, rgba(15,43,92,0.03) 0%, transparent 100%);
-}
-.city-nav-item .nav-num {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-.city-nav-item .nav-name {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin-top: 1px;
-}
-.city-nav-item.active {
-  background: linear-gradient(90deg, rgba(15,43,92,0.06) 0%, transparent 100%);
-  border-left-color: var(--primary);
-}
-.city-nav-item.active .nav-num { color: var(--primary); }
-.city-nav-item.active .nav-name { color: var(--primary); font-weight: 700; }
-
-/* 左侧导航底部装饰 */
-.city-nav-footer {
-  margin-top: 24px;
-  padding: 16px 12px 0 14px;
-  border-top: 1px solid var(--border-light);
   position: relative;
 }
-.city-nav-quote {
-  font-family: var(--font-serif);
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  line-height: 1.8;
-  letter-spacing: 0.06em;
-  margin: 0;
-  opacity: 0.65;
+.city-nav-item:hover {
+  background: rgba(15,43,92,0.03);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
-.city-nav-stamp {
-  display: inline-flex;
+.city-nav-item .nav-item-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+.city-nav-item .nav-item-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  line-height: 1.2;
+  transition: all 0.3s ease;
+}
+.city-nav-item .nav-item-desc {
+  font-family: var(--font-serif);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  opacity: 0.55;
+  line-height: 1.3;
+  letter-spacing: 0.03em;
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.3s ease;
+}
+/* 编号圆形徽章 */
+.city-nav-item .nav-item-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(15,43,92,0.05);
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  font-weight: 900;
-  color: var(--accent);
-  border: 1.5px solid var(--accent);
-  border-radius: 4px;
-  margin-top: 12px;
-  opacity: 0.55;
-  transform: rotate(-3deg);
-  letter-spacing: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  font-variant-numeric: tabular-nums;
 }
-.city-nav-ornament {
-  margin-top: 20px;
-  height: 56px;
-  opacity: 0.13;
-  background-image: url("data:image/svg+xml,%3Csvg width='120' height='56' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230F2B5C' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 50 L14 34 L22 40 L34 20 L44 32 L56 14 L64 36 L72 26 L84 38 L92 22 L104 36 L118 28' /%3E%3Cpath d='M6 48 L8 40 L18 44 L26 28 L36 38 L46 20 L54 38 L62 30 L72 40 L80 28 L88 38 L100 36' opacity='0.5' stroke-width='0.8'/%3E%3C/g%3E%3Ccircle cx='30' cy='14' r='1.5' fill='%23C8963E' opacity='0.5'/%3E%3Ccircle cx='85' cy='18' r='1.2' fill='%23C8963E' opacity='0.4'/%3E%3Ccircle cx='60' cy='8' r='1' fill='%23D4532A' opacity='0.3'/%3E%3C/svg%3E");
-  background-size: contain;
+
+/* 激活状态 */
+.city-nav-item.active {
+  background: #1C3A7A;
+  box-shadow: 0 4px 18px rgba(28,58,122,0.3);
+}
+.city-nav-item.active .nav-item-name {
+  color: #fff;
+}
+.city-nav-item.active .nav-item-desc {
+  color: rgba(255,255,255,0.6);
+  opacity: 1;
+}
+.city-nav-item.active .nav-item-badge {
+  background: rgba(255,255,255,0.18);
+  color: var(--gold);
+  font-weight: 800;
+}
+.city-nav-item.active:hover {
+  transform: none;
+  box-shadow: 0 4px 18px rgba(28,58,122,0.3);
+}
+
+/* ===== ③ 文化语录区 ===== */
+.nav-quote-section {
+  margin-top: auto;
+  padding: 18px 0 6px 0;
+  position: relative;
+}
+.nav-quote-mark {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  line-height: 0.6;
+  color: var(--gold);
+  opacity: 0.14;
+  pointer-events: none;
+  margin-bottom: 6px;
+}
+.nav-quote-text {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  letter-spacing: 0.05em;
+  margin: 0;
+  padding-left: 10px;
+  border-left: 2px solid rgba(200,150,62,0.25);
+  opacity: 0.75;
+}
+.nav-quote-signature {
+  font-family: var(--font-serif);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin: 8px 0 0 0;
+  opacity: 0.5;
+  letter-spacing: 0.06em;
+  font-style: italic;
+}
+
+/* ===== ④ 建筑/山水底纹装饰区 ===== */
+.nav-silhouette {
+  margin-top: 10px;
+  height: 160px;
+  opacity: 0.1;
+  pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='240' height='180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23B8943E'%3E%3C!-- 远山层叠 --%3E%3Cpath d='M0 120 Q35 88 70 102 Q90 92 110 106 Q130 96 150 110 Q175 92 200 108 Q220 98 240 112' stroke-width='0.8' opacity='0.4'/%3E%3Cpath d='M0 132 Q45 105 90 118 Q115 108 140 122 Q165 110 195 125 Q215 116 240 128' stroke-width='1' opacity='0.55'/%3E%3Cpath d='M0 145 Q55 122 100 132 Q130 124 160 138 Q190 125 220 140 Q230 136 240 142' stroke-width='1.2' opacity='0.65'/%3E%3C!-- 左侧：多层宝塔(大雁塔风格) --%3E%3Cg stroke-width='0.9' opacity='0.75'%3E%3Cpath d='M42 140 L42 22' /%3E%3Cpath d='M37 140 L37 24' /%3E%3Cpath d='M47 140 L47 20' /%3E%3C!-- 塔层 --%3E%3Cpath d='M18 28 L66 28' /%3E%3Cpath d='M20 26 L64 26' /%3E%3Cpath d='M20 28 L18 36 L66 36' /%3E%3Cpath d='M20 40 L64 40' /%3E%3Cpath d='M20 42 L18 50 L66 50' /%3E%3Cpath d='M20 54 L64 54' /%3E%3Cpath d='M20 56 L18 64 L66 64' /%3E%3Cpath d='M20 68 L64 68' /%3E%3Cpath d='M20 70 L18 78 L66 78' /%3E%3Cpath d='M20 82 L64 82' /%3E%3Cpath d='M20 84 L18 92 L66 92' /%3E%3Cpath d='M22 98 L62 98' /%3E%3Cpath d='M22 100 L19 106 L65 106' /%3E%3C!-- 塔顶 --%3E%3Cpath d='M30 22 L40 8 L50 22'/%3E%3Cpath d='M34 22 L40 12 L46 22' fill='%23B8943E' opacity='0.18'/%3E%3C!-- 塔基 --%3E%3Cpath d='M15 140 L30 108 L54 108 L69 140' fill='%23B8943E' opacity='0.1'/%3E%3C/g%3E%3C!-- 中左：二层楼阁 --%3E%3Cg stroke-width='0.8' opacity='0.65'%3E%3Cpath d='M92 140 L92 60 L95 60 L95 140' /%3E%3Cpath d='M82 140 L82 62 L105 62 L105 140' fill='%23B8943E' opacity='0.07' /%3E%3C!-- 一楼屋顶 --%3E%3Cpath d='M74 66 Q93 52 110 66' /%3E%3Cpath d='M72 72 Q93 56 112 72' /%3E%3Cpath d='M70 78 L74 66 L110 66 L114 78' fill='%23B8943E' opacity='0.09' /%3E%3C!-- 二楼 --%3E%3Cpath d='M85 76 L85 88 L102 88 L102 76' /%3E%3Cpath d='M80 90 L85 76 L102 76 L108 90' fill='%23B8943E' opacity='0.07'/%3E%3C!-- 飞檐挑角 --%3E%3Cpath d='M74 66 Q68 60 64 66' /%3E%3Cpath d='M110 66 Q116 60 120 66' /%3E%3C/g%3E%3C!-- 中右：亭阁 --%3E%3Cg stroke-width='0.8' opacity='0.6'%3E%3Cpath d='M130 140 L130 78 M132 140 L132 78' /%3E%3Cpath d='M122 140 L122 80 L140 80 L140 140' fill='%23B8943E' opacity='0.06' /%3E%3C!-- 亭顶 --%3E%3Cpath d='M114 84 L131 62 L148 84' /%3E%3Cpath d='M118 84 L131 66 L145 84' fill='%23B8943E' opacity='0.1' /%3E%3Cpath d='M114 84 Q108 80 104 86' /%3E%3Cpath d='M148 84 Q154 80 158 86' /%3E%3C/g%3E%3C!-- 右侧：松树剪影 --%3E%3Cg stroke-width='0.9' opacity='0.55'%3E%3Cpath d='M178 140 Q190 110 185 78 Q195 95 200 78 Q206 100 196 118 Q212 108 208 125' fill='%23B8943E' opacity='0.07' /%3E%3Cpath d='M182 140 L182 82' /%3E%3Cpath d='M178 110 Q168 104 163 110' /%3E%3Cpath d='M184 98 Q175 88 168 92' /%3E%3Cpath d='M184 122 Q194 112 202 116' /%3E%3Cpath d='M182 104 Q192 94 200 90' /%3E%3C/g%3E%3C!-- 最右：飞檐翘角 --%3E%3Cg stroke-width='0.8' opacity='0.5'%3E%3Cpath d='M212 140 L212 105 L228 105 L228 140' fill='%23B8943E' opacity='0.05' /%3E%3Cpath d='M200 108 Q216 90 232 108' /%3E%3Cpath d='M200 108 Q196 104 190 110' /%3E%3Cpath d='M232 108 Q238 104 244 110' /%3E%3Cpath d='M198 115 L204 108 L228 108 L234 115' fill='%23B8943E' opacity='0.08' /%3E%3C/g%3E%3C!-- 底部水纹曲线 --%3E%3Cg stroke-width='0.6' opacity='0.35'%3E%3Cpath d='M0 152 Q35 148 70 152 Q105 156 140 152 Q175 148 210 152 Q230 154 240 150' /%3E%3Cpath d='M0 158 Q45 153 90 158 Q135 163 180 158 Q210 155 240 158' /%3E%3Cpath d='M0 164 Q40 160 80 164 Q120 168 160 164 Q200 160 240 164' /%3E%3C/g%3E%3C!-- 远山点景小塔 --%3E%3Cg stroke-width='0.6' opacity='0.35'%3E%3Cpath d='M162 112 L162 102' /%3E%3Cpath d='M158 105 L166 105' /%3E%3Cpath d='M159 107 L165 107' /%3E%3Cpath d='M158 105 L162 98 L166 105' fill='%23B8943E' opacity='0.12' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100% auto;
+  background-position: bottom center;
   background-repeat: no-repeat;
-  background-position: left center;
 }
 
 /* ---- 右侧城市内容 ---- */
@@ -979,7 +1094,7 @@ body::after {
   .hero-collage { height: 360px; }
   .content-grid { grid-template-columns: 260px 1fr; }
   .content-wrapper { align-items: flex-start; }
-  .city-content { padding: 0 0 0 32px; }
+  .city-content { padding: 0 0 0 28px; }
   .heritage-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-grid { gap: 0.8rem; }
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -1003,12 +1118,20 @@ body::after {
   .dot-circle { width: 44px; height: 44px; }
   .content-wrapper { flex-direction: column; }
   .city-nav { width: 100%; min-width: 100%; position: static; }
-  .city-nav-inner { border-right: none; border-bottom: 1px solid var(--border-light); padding-bottom: 8px; margin-bottom: 16px; }
+  .city-nav-inner { border-right: none; border-radius: 12px; padding: 16px; margin-bottom: 16px; background: var(--white); min-height: auto; }
+  .city-nav-inner::before { display: none; }
+  .nav-region-header { margin-bottom: 14px; }
+  .region-name { font-size: 1.1rem; }
+  .region-divider { margin-top: 10px; }
+  .nav-cards-container { background: transparent; box-shadow: none; padding: 0; }
   .city-nav-list { flex-direction: row; flex-wrap: wrap; gap: 4px; }
-  .city-nav-item { border-left: none; border-bottom: 2px solid transparent; border-radius: 4px 4px 0 0; padding: 8px 14px; }
-  .city-nav-item.active { border-left-color: transparent; border-bottom-color: var(--primary); background: transparent; }
-  .city-nav-footer { display: none; }
-  .city-nav-label { padding-bottom: 8px; }
+  .city-nav-item { padding: 6px 12px; border-radius: 16px; border: 1px solid var(--border-light); }
+  .city-nav-item .nav-item-badge { display: none; }
+  .city-nav-item .nav-item-desc { display: none; }
+  .city-nav-item .nav-item-name { font-size: 0.78rem; }
+  .city-nav-item.active { background: var(--primary); border-color: var(--primary); transform: none; box-shadow: none; }
+  .nav-quote-section { display: none; }
+  .nav-silhouette { display: none; }
   .city-content { padding: 0; }
   .survey-grid { grid-template-columns: repeat(2, 1fr); }
   .survey-card:nth-child(2) { margin-top: 0; }
@@ -1036,7 +1159,6 @@ body::after {
   .photo-main { grid-column: span 2; height: 160px; }
   .photo-sub { aspect-ratio: 1; }
   .practice-info-bar { flex-wrap: wrap; gap: 12px; }
-  .city-nav-label { padding-left: 0; }
   .city-hero-image { height: 160px; }
   .insight-block { padding: 20px 16px; }
   .insight-block-text { font-size: 0.8rem; }

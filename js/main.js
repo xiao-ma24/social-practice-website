@@ -30,9 +30,42 @@
     if (!province) return;
     currentProvince = provinceKey;
     currentCityId = province.points[0].id;
+    renderProvinceHeader(province);
     renderCityNav(province);
     renderCityModules(province);
     updateTimelineActive(provinceKey);
+    updateQuoteText(provinceKey);
+  }
+
+  // ==================== 省份语录映射 ====================
+  var provinceQuotes = {
+    gansu:     '行走甘肃大地，触摸历史脉络<br>在多元文化中，感受传承的力量。',
+    hubei:     '漫步荆楚大地，聆听长江千年回响<br>在诗词歌赋中，汲取文明智慧。',
+    neimenggu: '驰骋草原深处，追寻游牧文明记忆<br>在辽阔天地间，感悟生命壮美。',
+    xizang:    '登上世界屋脊，朝圣雪域文化净土<br>在信仰光芒中，洗涤心灵尘埃。',
+    xinjiang:  '穿越丝路古道，探访西域多元文明<br>在交融共生中，见证文化力量。',
+    guangxi:   '行走壮乡山水，聆听八桂山歌悠扬<br>在如画风光中，探寻民族之美。'
+  };
+
+  function updateQuoteText(provinceKey) {
+    var quoteEl = document.getElementById('nav-quote-text');
+    if (quoteEl && provinceQuotes[provinceKey]) {
+      quoteEl.innerHTML = provinceQuotes[provinceKey];
+    }
+  }
+
+  // ==================== 渲染省份标题区 ====================
+  function renderProvinceHeader(province) {
+    var header = document.getElementById('nav-region-header');
+    if (!header) return;
+    header.innerHTML =
+      '<div class="region-icon">&#x1F4CD;</div>' +
+      '<div class="region-title-group">' +
+        '<div class="region-name">' + province.name + '</div>' +
+        '<div class="region-eng">' + (province.navEng || '') + '</div>' +
+      '</div>' +
+      '<p class="region-subtitle">' + (province.navSubtitle || province.description || '') + '</p>' +
+      '<div class="region-divider"></div>';
   }
 
   // ==================== 渲染城市导航 ====================
@@ -40,9 +73,13 @@
     cityNavList.innerHTML = province.points.map(function (point, index) {
       var isActive = point.id === currentCityId;
       var num = ('0' + (index + 1)).slice(-2);
+      var quote = point.navQuote || '';
       return '<a class="city-nav-item' + (isActive ? ' active' : '') + '" data-city="' + point.id + '" href="#city-' + point.id + '">' +
-        '<div class="nav-num">' + num + '</div>' +
-        '<div class="nav-name">' + point.name + '</div>' +
+        '<div class="nav-item-left">' +
+          '<div class="nav-item-name">' + point.name + '</div>' +
+          (quote ? '<div class="nav-item-desc">' + quote + '</div>' : '') +
+        '</div>' +
+        '<div class="nav-item-badge">' + num + '</div>' +
       '</a>';
     }).join('');
   }

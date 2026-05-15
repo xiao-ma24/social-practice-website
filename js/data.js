@@ -6,11 +6,14 @@ const cultureData = {
   gansu: {
     name: '甘肃',
     fullName: '甘肃省',
+    navEng: 'GANSU',
+    navSubtitle: '丝路咽喉 · 多元文化交汇地',
     description: '丝绸之路黄金段，黄河文化重要发源地',
     points: [
       {
         id: 'lanzhou',
         name: '兰州',
+        navQuote: '黄河远上白云间',
         food: { title: '兰州牛肉面', description: '兰州牛肉面被誉为"中华第一面"...', image: 'https://picsum.photos/seed/lanzhou-beefnoodle/600/400' },
         culture: { title: '兰州太平鼓', description: '兰州太平鼓是国家级非物质文化遗产...', image: 'https://picsum.photos/seed/taiping-drum/600/400' },
         heritage: '太平鼓不仅是兰州的文化符号...',
@@ -39,6 +42,7 @@ const cultureData = {
       {
         id: 'linxia',
         name: '临夏',
+        navQuote: '导河积石，至于龙门',
         food: { title: '临夏手抓羊肉', description: '临夏手抓羊肉以其鲜嫩无膻闻名...', image: 'https://picsum.photos/seed/linxia-mutton/600/400' },
         culture: { title: '临夏花儿', description: '花儿是流传于甘青宁地区的民歌...', image: 'https://picsum.photos/seed/linxia-huaer/600/400' },
         heritage: '临夏花儿是世界级非遗，需要代代传唱。',
@@ -67,6 +71,7 @@ const cultureData = {
       {
         id: 'tianshui',
         name: '天水',
+        navQuote: '龙城飞将，麦积烟霞',
         food: { title: '天水呱呱', description: '天水特色小吃，以荞麦淀粉制成...', image: 'https://picsum.photos/seed/tianshui-guagua/600/400' },
         culture: { title: '伏羲文化', description: '天水是伏羲故里，华夏文明发源地...', image: 'https://picsum.photos/seed/fuxi-temple/600/400' },
         heritage: '伏羲文化是中华民族精神的重要源头。',
@@ -95,10 +100,11 @@ const cultureData = {
     ]
   },
   hubei: {
-    name: '湖北', fullName: '湖北省', description: '荆楚文化发祥地，长江文明的重要源头',
+    name: '湖北', fullName: '湖北省', navEng: 'HUBEI', navSubtitle: '荆楚文化 · 长江文明发祥地', description: '荆楚文化发祥地，长江文明的重要源头',
     points: [
       {
         id: 'wuhan', name: '武汉',
+        navQuote: '晴川历历，芳草萋萋',
         food: { title: '武汉热干面', description: '...', image: 'https://picsum.photos/seed/wuhan-hotdry/600/400' },
         culture: { title: '汉剧', description: '...', image: 'https://picsum.photos/seed/han-opera/600/400' },
         heritage: '汉剧作为中国最古老的剧种之一...',
@@ -126,6 +132,7 @@ const cultureData = {
       },
       {
         id: 'enshi', name: '恩施',
+        navQuote: '清江一曲抱村流',
         food: { title: '恩施合渣', description: '...', image: 'https://picsum.photos/seed/tujia-hezha/600/400' },
         culture: { title: '土家摆手舞', description: '...', image: 'https://picsum.photos/seed/tujia-dance/600/400' },
         heritage: '摆手舞是土家族集体记忆的活态载体...',
@@ -154,10 +161,11 @@ const cultureData = {
     ]
   },
   neimenggu: {
-    name: '内蒙古', fullName: '内蒙古自治区', description: '草原文化的摇篮，马背民族的故乡',
+    name: '内蒙古', fullName: '内蒙古自治区', navEng: 'INNER MONGOLIA', navSubtitle: '草原文化 · 马背民族摇篮', description: '草原文化的摇篮，马背民族的故乡',
     points: [
       {
         id: 'huhehaote', name: '呼和浩特',
+        navQuote: '风吹草低见牛羊',
         food: { title: '手把肉', description: '...', image: 'https://picsum.photos/seed/mongol-mutton/600/400' },
         culture: { title: '蒙古族长调民歌', description: '...', image: 'https://picsum.photos/seed/mongol-longsong/600/400' },
         heritage: '长调是游牧文明的音乐活化石...',
@@ -185,6 +193,7 @@ const cultureData = {
       },
       {
         id: 'eerduosi', name: '鄂尔多斯',
+        navQuote: '大漠孤烟，长河落日',
         food: { title: '烤全羊', description: '...', image: 'https://picsum.photos/seed/roast-lamb/600/400' },
         culture: { title: '鄂尔多斯婚礼', description: '...', image: 'https://picsum.photos/seed/mongol-wedding/600/400' },
         heritage: '鄂尔多斯婚礼集蒙古族诗歌、音乐、舞蹈于一体...',
@@ -213,10 +222,11 @@ const cultureData = {
     ]
   },
   xizang: {
-    name: '西藏', fullName: '西藏自治区', description: '世界屋脊，藏文化的圣洁之地',
+    name: '西藏', fullName: '西藏自治区', navEng: 'TIBET', navSubtitle: '世界屋脊 · 雪域文化圣地', description: '世界屋脊，藏文化的圣洁之地',
     points: [
       {
         id: 'lasa', name: '拉萨',
+        navQuote: '世间安得双全法',
         food: { title: '酥油茶', description: '...', image: 'https://picsum.photos/seed/tibet-butter-tea/600/400' },
         culture: { title: '藏戏', description: '...', image: 'https://picsum.photos/seed/tibet-opera/600/400' },
         heritage: '藏戏承载着藏族人民的宗教信仰...',
@@ -244,6 +254,7 @@ const cultureData = {
       },
       {
         id: 'rikaze', name: '日喀则',
+        navQuote: '珠峰巍峨接天际',
         food: { title: '青稞酒', description: '...', image: 'https://picsum.photos/seed/qingke-wine/600/400' },
         culture: { title: '唐卡艺术', description: '...', image: 'https://picsum.photos/seed/thangka-art/600/400' },
         heritage: '唐卡是藏传佛教文化的重要载体...',
@@ -272,10 +283,11 @@ const cultureData = {
     ]
   },
   xinjiang: {
-    name: '新疆', fullName: '新疆维吾尔自治区', description: '丝绸之路核心区，多元文化交汇之地',
+    name: '新疆', fullName: '新疆维吾尔自治区', navEng: 'XINJIANG', navSubtitle: '丝路核心 · 多元文化共生', description: '丝绸之路核心区，多元文化交汇之地',
     points: [
       {
         id: 'wulumuqi', name: '乌鲁木齐',
+        navQuote: '千树万树梨花开',
         food: { title: '烤羊肉串', description: '...', image: 'https://picsum.photos/seed/xinjiang-kebab/600/400' },
         culture: { title: '十二木卡姆', description: '...', image: 'https://picsum.photos/seed/muqam-music/600/400' },
         heritage: '十二木卡姆曾一度面临失传...',
@@ -303,6 +315,7 @@ const cultureData = {
       },
       {
         id: 'kashi', name: '喀什',
+        navQuote: '劝君更尽一杯酒',
         food: { title: '手抓饭', description: '...', image: 'https://picsum.photos/seed/pilaf-rice/600/400' },
         culture: { title: '艾德莱斯绸', description: '...', image: 'https://picsum.photos/seed/atlas-silk/600/400' },
         heritage: '艾德莱斯绸扎染技艺已传承千年...',
@@ -331,10 +344,11 @@ const cultureData = {
     ]
   },
   guangxi: {
-    name: '广西', fullName: '广西壮族自治区', description: '壮乡歌海，山水甲天下的民族文化宝库',
+    name: '广西', fullName: '广西壮族自治区', navEng: 'GUANGXI', navSubtitle: '壮乡歌海 · 山水文化宝库', description: '壮乡歌海，山水甲天下的民族文化宝库',
     points: [
       {
         id: 'guilin', name: '桂林',
+        navQuote: '江作青罗带',
         food: { title: '桂林米粉', description: '...', image: 'https://picsum.photos/seed/guilin-rice-noodle/600/400' },
         culture: { title: '壮族山歌', description: '...', image: 'https://picsum.photos/seed/zhuang-song/600/400' },
         heritage: '壮族山歌承载着壮族的历史记忆...',
@@ -362,6 +376,7 @@ const cultureData = {
       },
       {
         id: 'nanning', name: '南宁',
+        navQuote: '红豆生南国',
         food: { title: '老友粉', description: '...', image: 'https://picsum.photos/seed/laoyou-noodle/600/400' },
         culture: { title: '邕剧', description: '...', image: 'https://picsum.photos/seed/yong-opera/600/400' },
         heritage: '邕剧作为广西特有的地方剧种...',
