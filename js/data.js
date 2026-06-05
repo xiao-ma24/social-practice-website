@@ -17,7 +17,7 @@ const cultureData = {
         food: { title: '兰州牛肉面', description: '兰州牛肉面被誉为"中华第一面"...', image: 'https://picsum.photos/seed/lanzhou-beefnoodle/600/400' },
         culture: { title: '兰州太平鼓', description: '兰州太平鼓是国家级非物质文化遗产...', image: 'https://picsum.photos/seed/taiping-drum/600/400' },
         heritage: '太平鼓不仅是兰州的文化符号...',
-        insight: '在兰州，我们看到了黄河文化的厚重，也感受到了城市生活中的烟火气。每一碗牛肉面、每一场皮影戏，都是兰州人民生活智慧的结晶。',
+        insight: '这一路的参观像一场跨越时空的对话。非遗陈列馆里，老兰州街头的鲜活风貌让历史不再是课本上的文字，而是有了温度、有了声音。岳云生的泥塑作品让我们最受触动——原来非遗不只是挂在墙上的“老古董”，它完全可以扎根当下，用传统技艺去表达今天的生活、今天的问题。秦腔的苍凉厚重、彩陶的古朴神秘，与这些鲜活的市井非遗交织在一起，让我们真切感受到兰州文化的深沉与灵动。这一天走下来，腿很酸，但心里很满。我们愈发明白，守护非遗，不是把它锁进玻璃柜，而是让它继续活在人们的目光和思考里。',
         heroImage: 'https://picsum.photos/seed/lanzhou-hero/1200/500',
         description: '黄河穿城而过，丝路明珠。一碗牛肉面，半部金城史。',
         surveyAreas: [
