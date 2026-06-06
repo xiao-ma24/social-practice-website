@@ -256,7 +256,7 @@
 
     var hasDetails = item.intro || item.process || item.feeling;
 
-    var html = '<img class="modal-hero" src="' + item.image + '" alt="' + item.name + '">' +
+    var html = '<div class="modal-image-wrap"><img class="modal-hero" src="' + item.image + '" alt="' + item.name + '"></div>' +
       '<div class="modal-content">' +
         '<h2 class="modal-title">' + item.name + '</h2>' +
         (item._typeLabel ? '<div class="modal-tag">' + item._typeLabel + '</div>' : '');

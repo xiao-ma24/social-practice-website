@@ -1119,14 +1119,15 @@ body::after {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(15, 43, 92, 0.45);
-  backdrop-filter: blur(4px);
+  background: rgba(15, 43, 92, 0.5);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 20px;
 }
 .modal-overlay.open {
   opacity: 1;
@@ -1135,17 +1136,24 @@ body::after {
 
 .modal-container {
   background: var(--bg);
-  border-radius: 16px;
-  max-width: 680px;
-  width: 92%;
-  max-height: 85vh;
+  border-radius: 20px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 88vh;
   overflow-y: auto;
   position: relative;
   box-shadow:
-    0 4px 24px rgba(0,0,0,0.08),
-    0 24px 80px rgba(15,43,92,0.18);
-  transform: translateY(24px);
-  transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+    0 2px 12px rgba(0,0,0,0.06),
+    0 12px 48px rgba(15,43,92,0.12),
+    0 32px 100px rgba(15,43,92,0.2);
+  transform: translateY(28px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.22, 0.1, 0.2, 1);
+  /* 隐藏滚动条但保持可滚动 */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.modal-container::-webkit-scrollbar {
+  display: none;
 }
 /* 宣纸纹理 */
 .modal-container::before {
@@ -1154,87 +1162,121 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.04;
+  opacity: 0.035;
+  border-radius: 20px;
   background-image:
     url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
 }
 .modal-overlay.open .modal-container {
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
-/* 关闭按钮 */
+/* 关闭按钮 — 浮在大图上方 */
 .modal-close {
   position: absolute;
-  top: 12px;
+  top: 14px;
   right: 14px;
   z-index: 10;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   border: none;
-  background: rgba(255,255,255,0.9);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  font-size: 1.2rem;
-  color: var(--text-secondary);
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  font-size: 1.1rem;
+  color: #fff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
+  line-height: 1;
 }
 .modal-close:hover {
   background: var(--accent);
   color: #fff;
-  box-shadow: 0 4px 14px rgba(212,83,42,0.3);
-  transform: rotate(90deg);
+  box-shadow: 0 4px 16px rgba(212,83,42,0.35);
+  transform: scale(1.08);
 }
 
 /* Modal 内容区 */
 .modal-body {
   padding: 0;
+  position: relative;
+  z-index: 1;
 }
 
-/* Modal 大图 */
+/* Modal 大图 — 加底部渐变过渡 */
+.modal-image-wrap {
+  position: relative;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
 .modal-hero {
   width: 100%;
-  height: 300px;
+  height: 280px;
   object-fit: cover;
   display: block;
-  border-radius: 16px 16px 0 0;
+  transition: transform 0.6s ease;
+}
+.modal-image-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+  pointer-events: none;
 }
 
 /* Modal 文字内容 */
 .modal-content {
-  padding: 28px 32px 32px;
+  padding: 20px 36px 36px;
 }
 
 .modal-title {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 900;
   color: var(--primary);
-  margin-bottom: 6px;
-  line-height: 1.25;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  position: relative;
+}
+
+/* 金色装饰线 */
+.modal-title::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin-top: 12px;
+  opacity: 0.45;
 }
 
 .modal-tag {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   font-size: 0.65rem;
   font-weight: 600;
   color: var(--gold);
-  letter-spacing: 0.08em;
-  padding: 3px 10px;
+  letter-spacing: 0.1em;
+  padding: 3px 12px;
   background: var(--gold-light);
-  border-radius: 4px;
-  margin-bottom: 24px;
+  border-radius: 999px;
+  margin-bottom: 28px;
+  text-transform: uppercase;
 }
 
 /* Modal 分块 */
 .modal-section {
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 .modal-section:last-child {
   margin-bottom: 0;
@@ -1246,46 +1288,36 @@ body::after {
   margin-bottom: 10px;
 }
 .modal-section-icon {
-  font-size: 0.95rem;
-  opacity: 0.75;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-soft);
+  border-radius: 50%;
+  font-size: 0.8rem;
+  flex-shrink: 0;
 }
 .modal-section-label {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--primary);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
 }
 .modal-section-body {
   font-size: 0.88rem;
   color: var(--text-secondary);
   line-height: 2;
-  padding-left: 24px;
-  border-left: 2px solid var(--border-light);
+  padding-left: 20px;
+  border-left: 2px solid rgba(200,150,62,0.2);
 }
 .modal-section-body p {
   margin: 0;
 }
 
-/* Modal 分隔线 */
-.modal-divider {
-  width: 48px;
-  height: 2px;
-  background: var(--gold);
-  border-radius: 1px;
-  margin: 20px 0;
-  opacity: 0.3;
-}
-
-/* 滚动条美化 */
-.modal-container::-webkit-scrollbar {
-  width: 5px;
-}
-.modal-container::-webkit-scrollbar-track {
-  background: transparent;
-}
-.modal-container::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 10px;
+/* 底部间距调整 */
+.modal-content > *:last-child {
+  margin-bottom: 0;
 }
 
 /* ==================== Footer ==================== */
