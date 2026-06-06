@@ -18,6 +18,8 @@
     loadProvince(currentProvince);
     setupTimeline();
     setupCityNavClicks();
+    setupCardClicks();
+    setupModalEvents();
     setupScrollAnimations();
     setupSmoothScroll();
     setupMobileMenu();
@@ -30,6 +32,7 @@
     if (!province) return;
     currentProvince = provinceKey;
     currentCityId = province.points[0].id;
+    currentProvinceData = province;
     renderProvinceHeader(province);
     renderCityNav(province);
     renderCityModules(province);
@@ -109,10 +112,10 @@
       '<div class="city-hero-wrap"><img class="city-hero-image" src="' + point.heroImage + '" alt="' + point.name + '" loading="lazy"></div>' +
 
       // ③ 调研区域
-      buildSurveyAreas(point.surveyAreas || []) +
+      buildSurveyAreas(point.surveyAreas || [], point.id) +
 
       // ④ 非遗项目
-      buildHeritageItems(point.heritageItems || []) +
+      buildHeritageItems(point.heritageItems || [], point.id) +
 
       // ⑤ 实践记录照片墙
       buildPhotoWall(point.practicePhotos || []) +
@@ -124,7 +127,7 @@
     '</article>';
   }
 
-  function buildSurveyAreas(areas) {
+  function buildSurveyAreas(areas, cityId) {
     if (!areas.length) return '';
     return '<div class="section-label">' +
       '<span class="section-label-bar blue"></span>' +
@@ -132,8 +135,8 @@
       '<span class="section-label-text">主要调研区域</span>' +
     '</div>' +
     '<div class="survey-grid">' +
-      areas.map(function (area) {
-        return '<div class="survey-card">' +
+      areas.map(function (area, index) {
+        return '<div class="survey-card" data-type="survey" data-city="' + cityId + '" data-index="' + index + '" title="点击查看详情">' +
           '<div class="survey-card-img-wrap"><img class="survey-card-image" src="' + area.image + '" alt="' + area.name + '" loading="lazy"><div class="survey-card-overlay"></div></div>' +
           '<div class="survey-card-body">' +
             '<div class="survey-card-name">' + area.name + '</div>' +
@@ -144,7 +147,7 @@
     '</div>';
   }
 
-  function buildHeritageItems(items) {
+  function buildHeritageItems(items, cityId) {
     if (!items.length) return '';
     return '<div class="section-label">' +
       '<span class="section-label-bar gold"></span>' +
@@ -152,8 +155,8 @@
       '<span class="section-label-text">非物质文化遗产</span>' +
     '</div>' +
     '<div class="heritage-grid">' +
-      items.map(function (item) {
-        return '<div class="heritage-item">' +
+      items.map(function (item, index) {
+        return '<div class="heritage-item" data-type="heritage" data-city="' + cityId + '" data-index="' + index + '" title="点击查看详情">' +
           '<img class="heritage-item-image" src="' + item.image + '" alt="' + item.name + '" loading="lazy">' +
           '<div class="heritage-item-body">' +
             '<div class="heritage-item-name">' + item.name + '</div>' +
@@ -210,6 +213,106 @@
       '<p class="insight-block-text">' + insightText + '</p>' +
       (name ? '<p class="insight-block-signature">—— ' + name + '实践小组</p>' : '') +
     '</div>';
+  }
+
+  // ==================== Modal 弹窗 ====================
+  var currentProvinceData = null;
+
+  function setupCardClicks() {
+    cityContent.addEventListener('click', function (e) {
+      var card = e.target.closest('[data-type]');
+      if (!card) return;
+      var type = card.dataset.type;
+      var cityId = card.dataset.city;
+      var index = parseInt(card.dataset.index, 10);
+      var point = findPointById(cityId);
+      if (!point) return;
+
+      var item;
+      if (type === 'survey') {
+        item = point.surveyAreas && point.surveyAreas[index];
+        item._typeLabel = '调研地点';
+      } else if (type === 'heritage') {
+        item = point.heritageItems && point.heritageItems[index];
+        item._typeLabel = item.level || '非遗项目';
+      }
+      if (item) openModal(item);
+    });
+  }
+
+  function findPointById(cityId) {
+    if (!currentProvinceData) return null;
+    var points = currentProvinceData.points;
+    for (var i = 0; i < points.length; i++) {
+      if (points[i].id === cityId) return points[i];
+    }
+    return null;
+  }
+
+  function openModal(item) {
+    var overlay = document.getElementById('modal-overlay');
+    var body = document.getElementById('modal-body');
+    if (!overlay || !body) return;
+
+    var hasDetails = item.intro || item.process || item.feeling;
+
+    var html = '<img class="modal-hero" src="' + item.image + '" alt="' + item.name + '">' +
+      '<div class="modal-content">' +
+        '<h2 class="modal-title">' + item.name + '</h2>' +
+        (item._typeLabel ? '<div class="modal-tag">' + item._typeLabel + '</div>' : '');
+
+    if (hasDetails) {
+      if (item.intro) {
+        html += '<div class="modal-section">' +
+          '<div class="modal-section-header"><span class="modal-section-icon">&#x1F4D6;</span><span class="modal-section-label">介绍</span></div>' +
+          '<div class="modal-section-body"><p>' + item.intro + '</p></div>' +
+        '</div>';
+      }
+      if (item.process) {
+        html += '<div class="modal-section">' +
+          '<div class="modal-section-header"><span class="modal-section-icon">&#x1F50D;</span><span class="modal-section-label">调研过程</span></div>' +
+          '<div class="modal-section-body"><p>' + item.process + '</p></div>' +
+        '</div>';
+      }
+      if (item.feeling) {
+        html += '<div class="modal-section">' +
+          '<div class="modal-section-header"><span class="modal-section-icon">&#x1F4AD;</span><span class="modal-section-label">实践感受</span></div>' +
+          '<div class="modal-section-body"><p>' + item.feeling + '</p></div>' +
+        '</div>';
+      }
+    } else {
+      html += '<div class="modal-section"><div class="modal-section-body"><p>' + (item.description || '暂无详细信息') + '</p></div></div>';
+    }
+
+    html += '</div>';
+    body.innerHTML = html;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    var overlay = document.getElementById('modal-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function setupModalEvents() {
+    var overlay = document.getElementById('modal-overlay');
+    var closeBtn = document.getElementById('modal-close');
+    if (!overlay) return;
+
+    closeBtn.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) {
+        closeModal();
+      }
+    });
   }
 
   // ==================== 省份卡片交互（六宫格） ====================
