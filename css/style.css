@@ -718,7 +718,7 @@ body::after {
 /* 调研区域卡片 — 错落排列 */
 .survey-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
   margin-bottom: 40px;
 }
@@ -806,7 +806,7 @@ body::after {
 /* 非遗项目卡片 — 展品陈列风 */
 .heritage-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 14px;
   margin-bottom: 40px;
 }
@@ -1387,9 +1387,9 @@ body::after {
   .nav-quote-section { display: none; }
   .nav-silhouette { display: none; }
   .city-content { padding: 0; }
-  .survey-grid { grid-template-columns: repeat(2, 1fr); }
+  .survey-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   .survey-card:nth-child(2) { margin-top: 0; }
-  .heritage-grid { grid-template-columns: repeat(2, 1fr); }
+  .heritage-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
   .photo-wall { grid-template-columns: 1fr 1fr; height: 200px; }
   .photo-main { grid-row: auto; }
   .city-module-name { font-size: 1.6rem; }
@@ -1406,7 +1406,6 @@ body::after {
   .stat-number { font-size: 1.6rem; }
   .city-nav-item { font-size: 0.75rem; }
   .survey-grid { grid-template-columns: 1fr; gap: 10px; }
-  .survey-card:nth-child(2) { margin-top: 0; }
   .heritage-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
   .heritage-item-image { height: 90px; }
   .photo-wall { grid-template-columns: 1fr 1fr; height: auto; }
