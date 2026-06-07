@@ -99,7 +99,7 @@
     var provinceKey = province.name;
     var labelText = (province.fullName || province.name) + ' · ' + point.name;
 
-    return '<article class="city-module" id="city-' + point.id + '">' +
+    var html = '<article class="city-module' + (point.isTeaching ? ' teaching-module' : '') + '" id="city-' + point.id + '">' +
 
       // ① 标题区
       '<div class="city-module-header">' +
@@ -109,22 +109,21 @@
       '</div>' +
 
       // ② 主视觉大图
-      '<div class="city-hero-wrap"><img class="city-hero-image" src="' + point.heroImage + '" alt="' + point.name + '" loading="lazy"></div>' +
+      '<div class="city-hero-wrap"><img class="city-hero-image" src="' + point.heroImage + '" alt="' + point.name + '" loading="lazy"></div>';
 
-      // ③ 调研区域
-      buildSurveyAreas(point.surveyAreas || [], point.id) +
+    if (point.isTeaching) {
+      html += buildTeachingActivities(point.teachingActivities || [], point.id);
+    } else {
+      html += buildSurveyAreas(point.surveyAreas || [], point.id) +
+        buildHeritageItems(point.heritageItems || [], point.id);
+    }
 
-      // ④ 非遗项目
-      buildHeritageItems(point.heritageItems || [], point.id) +
-
-      // ⑤ 实践记录照片墙
-      buildPhotoWall(point.practicePhotos || []) +
+    html += buildPhotoWall(point.practicePhotos || []) +
       buildPracticeInfo(point.practiceInfo) +
-
-      // ⑥ 实践感悟
       buildInsight(point) +
-
     '</article>';
+
+    return html;
   }
 
   function buildSurveyAreas(areas, cityId) {
@@ -162,6 +161,25 @@
             '<div class="heritage-item-name">' + item.name + '</div>' +
             '<div class="heritage-item-level">' + item.level + '</div>' +
             '<div class="heritage-item-desc">' + item.description + '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('') +
+    '</div>';
+  }
+
+  function buildTeachingActivities(activities, cityId) {
+    if (!activities.length) return '';
+    return '<div class="section-label">' +
+      '<span class="section-label-icon">&#x1F4DA;</span>' +
+      '<span class="section-label-text">支教课程</span>' +
+    '</div>' +
+    '<div class="teaching-grid">' +
+      activities.map(function (act, index) {
+        return '<div class="teaching-card" data-type="teaching" data-city="' + cityId + '" data-index="' + index + '" title="点击查看详情">' +
+          '<img class="teaching-card-image" src="' + act.image + '" alt="' + act.name + '" loading="lazy">' +
+          '<div class="teaching-card-body">' +
+            '<div class="teaching-card-name">' + act.name + '</div>' +
+            '<div class="teaching-card-desc">' + act.description + '</div>' +
           '</div>' +
         '</div>';
       }).join('') +
@@ -235,6 +253,9 @@
       } else if (type === 'heritage') {
         item = point.heritageItems && point.heritageItems[index];
         item._typeLabel = item.level || '非遗项目';
+      } else if (type === 'teaching') {
+        item = point.teachingActivities && point.teachingActivities[index];
+        item._typeLabel = '支教课程';
       }
       if (item) openModal(item);
     });
