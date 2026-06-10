@@ -762,9 +762,16 @@ body::after {
 .survey-card:hover .survey-card-overlay {
   opacity: 0.6;
 }
-.survey-card:nth-child(1) .survey-card-image { height: 120px; }
-.survey-card:nth-child(2) .survey-card-image { height: 96px; }
-.survey-card:nth-child(3) .survey-card-image { height: 130px; }
+.survey-card-image { height: 150px; }
+/* 单张卡片限制最大宽度，避免空旷拉伸 */
+.survey-card:only-child { max-width: 480px; }
+.survey-grid:has(.survey-card:nth-child(2):last-child) { max-width: 680px; }
+/* 非遗单张限制 */
+.heritage-item:only-child { max-width: 320px; }
+.heritage-grid:has(.heritage-item:nth-child(2):last-child) { max-width: 520px; }
+/* 支教单张限制 */
+.teaching-card:only-child { max-width: 360px; }
+.teaching-grid:has(.teaching-card:nth-child(2):last-child) { max-width: 560px; }
 .survey-card-body {
   padding: 14px 16px;
 }
@@ -1315,7 +1322,5 @@ body::after {
   .insight-block { padding: 20px 16px; }
   .insight-block-text { font-size: 0.8rem; }
   .heritage-item-image { height: 100px; }
-  .survey-card:nth-child(1) .survey-card-image,
-  .survey-card:nth-child(2) .survey-card-image,
-  .survey-card:nth-child(3) .survey-card-image { height: 90px; }
+  .survey-card-image { height: 100px; }
 }
