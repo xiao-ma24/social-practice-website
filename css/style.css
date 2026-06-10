@@ -735,7 +735,6 @@ body::after {
   transform: translateY(-6px);
   box-shadow: 0 12px 36px rgba(0,0,0,0.1), 0 0 0 1px rgba(15,43,92,0.06);
 }
-.survey-card:nth-child(2) { margin-top: 24px; }
 .survey-card-img-wrap {
   position: relative;
   overflow: hidden;
