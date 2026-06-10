@@ -582,6 +582,7 @@ body::after {
     url("data:image/svg+xml,%3Csvg width='240' height='180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23B8943E'%3E%3C!-- 远山层叠 --%3E%3Cpath d='M0 120 Q35 88 70 102 Q90 92 110 106 Q130 96 150 110 Q175 92 200 108 Q220 98 240 112' stroke-width='0.8' opacity='0.4'/%3E%3Cpath d='M0 132 Q45 105 90 118 Q115 108 140 122 Q165 110 195 125 Q215 116 240 128' stroke-width='1' opacity='0.55'/%3E%3Cpath d='M0 145 Q55 122 100 132 Q130 124 160 138 Q190 125 220 140 Q230 136 240 142' stroke-width='1.2' opacity='0.65'/%3E%3C!-- 左侧：多层宝塔(大雁塔风格) --%3E%3Cg stroke-width='0.9' opacity='0.75'%3E%3Cpath d='M42 140 L42 22' /%3E%3Cpath d='M37 140 L37 24' /%3E%3Cpath d='M47 140 L47 20' /%3E%3C!-- 塔层 --%3E%3Cpath d='M18 28 L66 28' /%3E%3Cpath d='M20 26 L64 26' /%3E%3Cpath d='M20 28 L18 36 L66 36' /%3E%3Cpath d='M20 40 L64 40' /%3E%3Cpath d='M20 42 L18 50 L66 50' /%3E%3Cpath d='M20 54 L64 54' /%3E%3Cpath d='M20 56 L18 64 L66 64' /%3E%3Cpath d='M20 68 L64 68' /%3E%3Cpath d='M20 70 L18 78 L66 78' /%3E%3Cpath d='M20 82 L64 82' /%3E%3Cpath d='M20 84 L18 92 L66 92' /%3E%3Cpath d='M22 98 L62 98' /%3E%3Cpath d='M22 100 L19 106 L65 106' /%3E%3C!-- 塔顶 --%3E%3Cpath d='M30 22 L40 8 L50 22'/%3E%3Cpath d='M34 22 L40 12 L46 22' fill='%23B8943E' opacity='0.18'/%3E%3C!-- 塔基 --%3E%3Cpath d='M15 140 L30 108 L54 108 L69 140' fill='%23B8943E' opacity='0.1'/%3E%3C/g%3E%3C!-- 中左：二层楼阁 --%3E%3Cg stroke-width='0.8' opacity='0.65'%3E%3Cpath d='M92 140 L92 60 L95 60 L95 140' /%3E%3Cpath d='M82 140 L82 62 L105 62 L105 140' fill='%23B8943E' opacity='0.07' /%3E%3C!-- 一楼屋顶 --%3E%3Cpath d='M74 66 Q93 52 110 66' /%3E%3Cpath d='M72 72 Q93 56 112 72' /%3E%3Cpath d='M70 78 L74 66 L110 66 L114 78' fill='%23B8943E' opacity='0.09' /%3E%3C!-- 二楼 --%3E%3Cpath d='M85 76 L85 88 L102 88 L102 76' /%3E%3Cpath d='M80 90 L85 76 L102 76 L108 90' fill='%23B8943E' opacity='0.07'/%3E%3C!-- 飞檐挑角 --%3E%3Cpath d='M74 66 Q68 60 64 66' /%3E%3Cpath d='M110 66 Q116 60 120 66' /%3E%3C/g%3E%3C!-- 中右：亭阁 --%3E%3Cg stroke-width='0.8' opacity='0.6'%3E%3Cpath d='M130 140 L130 78 M132 140 L132 78' /%3E%3Cpath d='M122 140 L122 80 L140 80 L140 140' fill='%23B8943E' opacity='0.06' /%3E%3C!-- 亭顶 --%3E%3Cpath d='M114 84 L131 62 L148 84' /%3E%3Cpath d='M118 84 L131 66 L145 84' fill='%23B8943E' opacity='0.1' /%3E%3Cpath d='M114 84 Q108 80 104 86' /%3E%3Cpath d='M148 84 Q154 80 158 86' /%3E%3C/g%3E%3C!-- 右侧：松树剪影 --%3E%3Cg stroke-width='0.9' opacity='0.55'%3E%3Cpath d='M178 140 Q190 110 185 78 Q195 95 200 78 Q206 100 196 118 Q212 108 208 125' fill='%23B8943E' opacity='0.07' /%3E%3Cpath d='M182 140 L182 82' /%3E%3Cpath d='M178 110 Q168 104 163 110' /%3E%3Cpath d='M184 98 Q175 88 168 92' /%3E%3Cpath d='M184 122 Q194 112 202 116' /%3E%3Cpath d='M182 104 Q192 94 200 90' /%3E%3C/g%3E%3C!-- 最右：飞檐翘角 --%3E%3Cg stroke-width='0.8' opacity='0.5'%3E%3Cpath d='M212 140 L212 105 L228 105 L228 140' fill='%23B8943E' opacity='0.05' /%3E%3Cpath d='M200 108 Q216 90 232 108' /%3E%3Cpath d='M200 108 Q196 104 190 110' /%3E%3Cpath d='M232 108 Q238 104 244 110' /%3E%3Cpath d='M198 115 L204 108 L228 108 L234 115' fill='%23B8943E' opacity='0.08' /%3E%3C/g%3E%3C!-- 底部水纹曲线 --%3E%3Cg stroke-width='0.6' opacity='0.35'%3E%3Cpath d='M0 152 Q35 148 70 152 Q105 156 140 152 Q175 148 210 152 Q230 154 240 150' /%3E%3Cpath d='M0 158 Q45 153 90 158 Q135 163 180 158 Q210 155 240 158' /%3E%3Cpath d='M0 164 Q40 160 80 164 Q120 168 160 164 Q200 160 240 164' /%3E%3C/g%3E%3C!-- 远山点景小塔 --%3E%3Cg stroke-width='0.6' opacity='0.35'%3E%3Cpath d='M162 112 L162 102' /%3E%3Cpath d='M158 105 L166 105' /%3E%3Cpath d='M159 107 L165 107' /%3E%3Cpath d='M158 105 L162 98 L166 105' fill='%23B8943E' opacity='0.12' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 100% auto;
   background-position: bottom center;
+  
   background-repeat: no-repeat;
 }
 
@@ -718,7 +719,7 @@ body::after {
 /* 调研区域卡片 — 错落排列 */
 .survey-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
   margin-bottom: 40px;
 }
@@ -759,31 +760,7 @@ body::after {
   transition: opacity 0.4s ease;
 }
 .survey-card:hover .survey-card-overlay {
-  opacity: 0.75;
-}
-/* hover 查看提示 */
-.survey-card-img-wrap::after {
-  content: '查看详情 →';
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%) translateY(4px);
-  background: rgba(255,255,255,0.92);
-  color: var(--primary);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  padding: 4px 12px;
-  border-radius: 20px;
-  opacity: 0;
-  transition: all 0.3s ease;
-  pointer-events: none;
-  z-index: 5;
-  white-space: nowrap;
-}
-.survey-card:hover .survey-card-img-wrap::after {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  opacity: 0.6;
 }
 .survey-card:nth-child(1) .survey-card-image { height: 120px; }
 .survey-card:nth-child(2) .survey-card-image { height: 96px; }
@@ -806,7 +783,7 @@ body::after {
 /* 非遗项目卡片 — 展品陈列风 */
 .heritage-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 14px;
   margin-bottom: 40px;
 }
@@ -834,30 +811,6 @@ body::after {
   transform: translateY(-8px);
   box-shadow: 0 16px 40px rgba(0,0,0,0.12);
   border-color: var(--accent-light);
-}
-/* hover 查看提示 */
-.heritage-item::before {
-  content: '查看详情 →';
-  position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  background: var(--primary);
-  color: #fff;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  padding: 4px 12px;
-  border-radius: 20px;
-  opacity: 0;
-  transition: all 0.3s ease;
-  pointer-events: none;
-  z-index: 10;
-  white-space: nowrap;
-}
-.heritage-item:hover::before {
-  opacity: 0.92;
-  transform: translateX(-50%) translateY(0);
 }
 .heritage-item:hover::after { opacity: 1; }
 .heritage-item-image {
@@ -899,76 +852,6 @@ body::after {
   font-size: 0.72rem;
   color: var(--text-muted);
   line-height: 1.65;
-}
-
-/* 支教课程卡片 */
-.teaching-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-  margin-bottom: 48px;
-}
-.teaching-card {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border-light);
-  cursor: pointer;
-  transition: all 0.35s ease;
-  position: relative;
-}
-.teaching-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-}
-.teaching-card-image {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
-.teaching-card:hover .teaching-card-image {
-  transform: scale(1.05);
-}
-.teaching-card-body {
-  padding: 16px 18px 20px;
-}
-.teaching-card-name {
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-.teaching-card-desc {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-}
-/* hover 查看提示 */
-.teaching-card::before {
-  content: '查看详情 →';
-  position: absolute;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%) translateY(4px);
-  background: var(--primary);
-  color: #fff;
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  padding: 3px 10px;
-  border-radius: 20px;
-  opacity: 0;
-  transition: all 0.3s ease;
-  pointer-events: none;
-  z-index: 5;
-  white-space: nowrap;
-}
-.teaching-card:hover::before {
-  opacity: 0.92;
-  transform: translateX(-50%) translateY(0);
 }
 
 /* 实践记录照片墙 */
@@ -1051,6 +934,16 @@ body::after {
   font-size: 0.9rem;
   font-weight: 600;
   padding: 14px 18px;
+}
+
+/* 照片墙自适应：≤3张等宽排列 */
+.photo-wall-all {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-rows: auto;
+  height: auto;
+}
+.photo-wall-all .photo-sub {
+  aspect-ratio: 4/3;
 }
 
 /* 实践信息条 — 展览标签风格 */
@@ -1184,212 +1077,6 @@ body::after {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ==================== Modal 弹窗 ==================== */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(15, 43, 92, 0.5);
-  backdrop-filter: blur(6px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  padding: 20px;
-}
-.modal-overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-container {
-  background: var(--bg);
-  border-radius: 20px;
-  max-width: 640px;
-  width: 100%;
-  max-height: 88vh;
-  overflow-y: auto;
-  position: relative;
-  box-shadow:
-    0 2px 12px rgba(0,0,0,0.06),
-    0 12px 48px rgba(15,43,92,0.12),
-    0 32px 100px rgba(15,43,92,0.2);
-  transform: translateY(28px) scale(0.97);
-  transition: transform 0.4s cubic-bezier(0.22, 0.1, 0.2, 1);
-  /* 隐藏滚动条但保持可滚动 */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.modal-container::-webkit-scrollbar {
-  display: none;
-}
-/* 宣纸纹理 */
-.modal-container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.035;
-  border-radius: 20px;
-  background-image:
-    url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 160px 160px;
-}
-.modal-overlay.open .modal-container {
-  transform: translateY(0) scale(1);
-}
-
-/* 关闭按钮 — 浮在大图上方 */
-.modal-close {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 10;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  font-size: 1.1rem;
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  line-height: 1;
-}
-.modal-close:hover {
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(212,83,42,0.35);
-  transform: scale(1.08);
-}
-
-/* Modal 内容区 */
-.modal-body {
-  padding: 0;
-  position: relative;
-  z-index: 1;
-}
-
-/* Modal 大图 — 加底部渐变过渡 */
-.modal-image-wrap {
-  position: relative;
-  border-radius: 20px 20px 0 0;
-  overflow: hidden;
-}
-.modal-hero {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s ease;
-}
-.modal-image-wrap::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
-  pointer-events: none;
-}
-
-/* Modal 文字内容 */
-.modal-content {
-  padding: 20px 36px 36px;
-}
-
-.modal-title {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: var(--primary);
-  margin-bottom: 8px;
-  line-height: 1.2;
-  position: relative;
-}
-
-/* 金色装饰线 */
-.modal-title::after {
-  content: '';
-  display: block;
-  width: 36px;
-  height: 3px;
-  background: var(--gold);
-  border-radius: 2px;
-  margin-top: 12px;
-  opacity: 0.45;
-}
-
-.modal-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--gold);
-  letter-spacing: 0.1em;
-  padding: 3px 12px;
-  background: var(--gold-light);
-  border-radius: 999px;
-  margin-bottom: 28px;
-  text-transform: uppercase;
-}
-
-/* Modal 分块 */
-.modal-section {
-  margin-bottom: 22px;
-}
-.modal-section:last-child {
-  margin-bottom: 0;
-}
-.modal-section-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-.modal-section-icon {
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--primary-soft);
-  border-radius: 50%;
-  font-size: 0.8rem;
-  flex-shrink: 0;
-}
-.modal-section-label {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--primary);
-  letter-spacing: 0.04em;
-}
-.modal-section-body {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  line-height: 2;
-  padding-left: 20px;
-  border-left: 2px solid rgba(200,150,62,0.2);
-}
-.modal-section-body p {
-  margin: 0;
-}
-
-/* 底部间距调整 */
-.modal-content > *:last-child {
-  margin-bottom: 0;
-}
-
 /* ==================== Footer ==================== */
 .footer {
   background: var(--primary); color: rgba(255,255,255,0.85);
@@ -1457,10 +1144,9 @@ body::after {
   .nav-quote-section { display: none; }
   .nav-silhouette { display: none; }
   .city-content { padding: 0; }
-  .survey-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .survey-grid { grid-template-columns: repeat(2, 1fr); }
   .survey-card:nth-child(2) { margin-top: 0; }
-  .heritage-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-  .teaching-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+  .heritage-grid { grid-template-columns: repeat(2, 1fr); }
   .photo-wall { grid-template-columns: 1fr 1fr; height: 200px; }
   .photo-main { grid-row: auto; }
   .city-module-name { font-size: 1.6rem; }
@@ -1477,6 +1163,7 @@ body::after {
   .stat-number { font-size: 1.6rem; }
   .city-nav-item { font-size: 0.75rem; }
   .survey-grid { grid-template-columns: 1fr; gap: 10px; }
+  .survey-card:nth-child(2) { margin-top: 0; }
   .heritage-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
   .heritage-item-image { height: 90px; }
   .photo-wall { grid-template-columns: 1fr 1fr; height: auto; }

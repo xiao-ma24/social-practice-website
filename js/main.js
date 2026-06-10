@@ -188,25 +188,38 @@
 
   function buildPhotoWall(photos) {
     if (!photos.length) return '';
-    var main = photos[0];
-    var subs = photos.slice(1);
-    return '<div class="section-label">' +
+    var isAll = photos.length <= 3;
+    var html = '<div class="section-label">' +
       '<span class="section-label-bar accent"></span>' +
       '<span class="section-label-icon">&#x1f4f7;</span>' +
       '<span class="section-label-text">实践记录</span>' +
-    '</div>' +
-    '<div class="photo-wall">' +
-      '<div class="photo-main">' +
-        '<img src="' + main.image + '" alt="' + main.label + '" loading="lazy">' +
-        '<div class="photo-label">' + main.label + '</div>' +
-      '</div>' +
-      subs.map(function (photo) {
-        return '<div class="photo-sub">' +
-          '<img src="' + photo.image + '" alt="' + photo.label + '" loading="lazy">' +
-          '<div class="photo-label">' + photo.label + '</div>' +
-        '</div>';
-      }).join('') +
     '</div>';
+    if (isAll) {
+      html += '<div class="photo-wall photo-wall-all">' +
+        photos.map(function (photo) {
+          return '<div class="photo-sub">' +
+            '<img src="' + photo.image + '" alt="' + photo.label + '" loading="lazy">' +
+            '<div class="photo-label">' + photo.label + '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>';
+    } else {
+      var main = photos[0];
+      var subs = photos.slice(1);
+      html += '<div class="photo-wall">' +
+        '<div class="photo-main">' +
+          '<img src="' + main.image + '" alt="' + main.label + '" loading="lazy">' +
+          '<div class="photo-label">' + main.label + '</div>' +
+        '</div>' +
+        subs.map(function (photo) {
+          return '<div class="photo-sub">' +
+            '<img src="' + photo.image + '" alt="' + photo.label + '" loading="lazy">' +
+            '<div class="photo-label">' + photo.label + '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>';
+    }
+    return html;
   }
 
   function buildPracticeInfo(info) {
