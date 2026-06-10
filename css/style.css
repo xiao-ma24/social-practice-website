@@ -742,6 +742,7 @@ body::after {
 }
 .survey-card-image {
   width: 100%;
+  height: 160px;
   object-fit: cover;
   display: block;
   transition: transform 0.55s ease;
@@ -762,7 +763,6 @@ body::after {
 .survey-card:hover .survey-card-overlay {
   opacity: 0.6;
 }
-.survey-card-image { height: 160px; }
 /* 单张卡片限制最大宽度，避免空旷拉伸 */
 .survey-card:only-child { max-width: 480px; }
 .survey-grid:has(.survey-card:nth-child(2):last-child) { max-width: 680px; }
