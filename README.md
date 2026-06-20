@@ -4,6 +4,14 @@
 
 **非遗传承 · 地域探索 · 青年担当**
 
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-原生-E34F26.svg" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-Grid%20%26%20变量-1572B6.svg" alt="CSS3">
+  <img src="https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E.svg" alt="JS">
+  <img src="https://img.shields.io/badge/部署-GitHub%20Pages-181717.svg" alt="GitHub Pages">
+  <img src="https://img.shields.io/badge/响应式-自适应-43A047.svg" alt="Responsive">
+</p>
+
 ---
 
 ## 🌐 在线访问
@@ -62,7 +70,6 @@
 ## 📁 项目结构
 
 ```
-社会实践网站/
 ├── index.html          # 主页面
 ├── css/
 │   └── style.css       # 全部样式（约1300行）
